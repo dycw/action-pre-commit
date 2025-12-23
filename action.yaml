@@ -43,13 +43,13 @@ runs:
         args=(uv tool run --from dycw-actions --isolated hooks)
         IFS=$'\n' read -r -d '' -a REPOS <<< "${{inputs.repos}}"$'\0'
         for repo in "${REPOS[@]}"; do
-          if [ -n "${repo}" ]; then
+          if [ -n "${repo//[[:space:]]/}" ]; then
             args+=(--repo "${repo}")
           fi
         done
         IFS=$'\n' read -r -d '' -a HOOKS <<< "${{inputs.hooks}}"$'\0'
         for hook in "${HOOKS[@]}"; do
-          if [ -n "${hook}" ]; then
+          if [ -n "${hook//[[:space:]]/}" ]; then
             args+=(--hook "${hook}")
           fi
         done

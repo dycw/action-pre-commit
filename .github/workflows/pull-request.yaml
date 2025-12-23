@@ -1,0 +1,21 @@
+jobs:
+  run-hooks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run 'pre-commit' hooks
+        uses: dycw/action-pre-commit@latest
+        with:
+          repos: |-
+            pre-commit/pre-commit-hooks
+            dycw/pre-commit-hook-nitpick
+          hooks: |-
+            nitpick
+            detect-private-key
+            pretty-format-json
+name: pull-request
+"on":
+  pull_request:
+    branches:
+      - master
+  schedule:
+    - cron: 0 0 * * *
