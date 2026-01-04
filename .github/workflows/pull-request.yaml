@@ -16,3 +16,11 @@ jobs:
           repos: |-
             dycw/conformalize
             pre-commit/pre-commit-hooks
+      - name: Run 'pre-commit'
+        uses: dycw/action-pre-commit@latest
+        with:
+          repos: |-
+            dycw/conformalize
+            pre-commit/pre-commit-hooks
+          token-checkout: ${{secrets.GITHUB_TOKEN}}
+          token-uv: ${{secrets.GITHUB_TOKEN}}
