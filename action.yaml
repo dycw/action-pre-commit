@@ -58,8 +58,9 @@ runs:
       shell: bash
 
     - name: Run 'action hooks'
-      run: uv tool run --from dycw-actions --isolated action hooks \
-        --repos ${{inputs.repos}} \
-        --hooks ${{inputs.hooks}} \
-        --sleep=${{inputs.sleep}}
+      env:
+        REPOS: ${{inputs.repos}}
+        HOOKS: ${{inputs.hooks}}
+        SLEEP: ${{inputs.sleep}}
+      run: uv tool run --from dycw-actions --isolated action hooks
       shell: bash
